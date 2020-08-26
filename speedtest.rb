@@ -55,7 +55,7 @@ if results['type'] == 'result' # successful test!
   end
 
 elsif results['error']
-  puts "...error: #{result['error']}"
+  puts "...error: #{results['error']}"
 else
   puts '...error: unknown reasons'
 end
