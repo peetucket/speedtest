@@ -3,6 +3,7 @@
 Tweet and log your internet speed each time this ruby script is run.
 
 If you want to run on a schedule, setup a simple cron job that runs the ruby script.
+Note that if you set this up as a cron job, you'll of course need to leave your laptop running.
 
 # Setup
 
@@ -37,3 +38,9 @@ cp config.yml.example config.yml
 6. Run on the terminal
 
 ruby speedtest.rb
+
+# Cron Job
+
+An example cron job running every hour at 1 minute after the hour is shown below.  Output will be sent to cron.log.
+
+1 * * * * /bin/bash -l -c 'cd /path/to/the/script && ruby speedtest.rb --silent >> cron.log'
