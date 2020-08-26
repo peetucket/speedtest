@@ -1,3 +1,4 @@
+*.xls*
 results.*
 *.log
 config.yml
