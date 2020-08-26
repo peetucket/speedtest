@@ -49,13 +49,19 @@ if results['type'] == 'result' # successful test!
     tweet_message = "Looking good! Our current Comcast @Xfinity internet speeds as of #{test_datetime}:  Download is #{download_speed} mbps and upload is #{upload_speed} mbps. Our plan is #{config["plan_down"]} down/#{config["plan_up"]} up."
   end
 
-  if config["tweet_results"]
-    puts '...tweeting results'
-    client.update(tweet_message)
-  end
+elsif results['error'] # speedtest-cli returned an error
 
-elsif results['error']
+  tweet_message = "Possibly slow or so broken that we couldn't run the speed test. Error reported by speedtest-cli is #{results['error']}.  Our plan is #{config["plan_down"]} down/#{config["plan_up"]} up."
   puts "...error: #{results['error']}"
-else
+
+else # we shouldn't get here unless something is really broken, like we couldn't even make a request to speedtest-cli...so unlikely tweeting will work either
+
+  tweet_message = 'Something is wrong with speedtest-cli -- no results reported.'
   puts '...error: unknown reasons'
+
+end
+
+if config["tweet_results"]
+  client.update(tweet_message)
+  puts '...tweeting results'
 end
