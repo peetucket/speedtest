@@ -1,0 +1,17 @@
+# These are your private twitter app API keys and auth tokens.
+# Note that your Twitter app needs to have write authorization.
+# BE SURE TO KEEP THEM PRIVATE, TREAT THEM LIKE PASSWORDS (i.e DO NOT CHECK INTO PUBLIC SOURCE CONTROL)
+consumer_key: 'XXXXX'
+consumer_key_secret: 'XXXXXX'
+access_token: 'XXXXXX'
+access_token_secret: 'XXXXXX'
+
+plan_down: 100 # your plan's download speed (in mpbs), as an integer or float
+plan_up: 5 # your plan's upload speed (in mbps), as an integer or float
+download_minimum: 50  # the download speed (in mbps) below which we trigger a problem tweet, as an integer or float
+upload_minimum: 2.5 # the upload speed (in mbps) below which we trigger a problem tweet, as an integer or float
+
+tweet_results: true # set to true to tweet each time the script is run, must be a boolean
+save_results: true # set to true to save results to a CSV file each time the script is run, must be a boolean
+
+output_filename: 'results.csv' # output csv file to write/append to
