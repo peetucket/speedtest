@@ -1,25 +1,4 @@
-# Tweet and log your internet speed each time run via ruby... use cron to run periodically
-# August 26, 2020
-
-# Setup (on a mac):
-
-# 1. Use ruby 2.5 or better
-# 2.  Install the twitter gem (https://github.com/sferik/twitter)
-# gem install twitter
-
-# 3. Install the speedtest-cli (https://www.speedtest.net/apps/cli)
-# brew tap teamookla/speedtest
-# brew update
-# brew install speedtest --force
-
-# 4. Setup a Twitter app (which may require a twitter developer account) and give it write authorization
-# Configure the API keys and tokens below.  https://apps.twitter.com/
-
-# 5. Copy the example config.yml file, and edit as needed to put in your twitter credentials and other config
-# cp config.yml.example config.yml
-
-# 6. Run:
-# ruby speedtest.rb
+# be sure to create a config.yml file from the example and then run with ruby speedtest.rb
 
 require 'json'
 require 'csv'

@@ -1,0 +1,39 @@
+# Speedtest
+
+Tweet and log your internet speed each time this ruby script is run.
+
+If you want to run on a schedule, setup a simple cron job that runs the ruby script.
+
+# Setup
+
+Note: I am running on a Macbook, you may need to modify some of this (particularly the speedtest cli install)
+depending on your OS/hardware.
+
+1. Use ruby 2.3 or better.  The ruby that comes pre-installed with Mac OS is probably not good enough.
+See https://www.ruby-lang.org/en/documentation/installation/ for more info
+
+2. Install the twitter gem
+See https://github.com/sferik/twitter
+
+gem install twitter
+
+3. Install the speedtest-cli
+See https://www.speedtest.net/apps/cli
+
+On a mac, you can use homebrew:
+
+brew tap teamookla/speedtest
+brew update
+brew install speedtest --force
+
+4. Setup a Twitter application, you will need a twitter account and a twitter developer account.
+Note that your app needs to have write authorization.  Your tokens will be configured in the config.yml file.
+See https://apps.twitter.com/
+
+5. Copy the example config.yml file, and edit as needed to put in your twitter credentials and other config
+
+cp config.yml.example config.yml
+
+6. Run on the terminal
+
+ruby speedtest.rb
