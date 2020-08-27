@@ -26,6 +26,7 @@ test_time = test_datetime.strftime("%H:%M") # get 24 hour time only
 puts "Running speedtest at #{test_datetime}"
 output = `speedtest -f json` # use speedtest client to get results (note: returns results in bytes per second)
 results = JSON.parse(output)
+tweet_message = nil
 
 if results['type'] == 'result' # successful test!
 
@@ -45,8 +46,6 @@ if results['type'] == 'result' # successful test!
 
   if (download_speed < config["download_minimum"]) || (upload_speed < config["upload_minimum"])
     tweet_message = "Not looking so great :(  Our current Comcast @Xfinity internet speeds as of #{test_datetime}:  Download is #{download_speed} mbps and upload is #{upload_speed} mbps. Our plan is #{config["plan_down"]} down/#{config["plan_up"]} up."
-  else
-    tweet_message = "Looking good! Our current Comcast @Xfinity internet speeds as of #{test_datetime}:  Download is #{download_speed} mbps and upload is #{upload_speed} mbps. Our plan is #{config["plan_down"]} down/#{config["plan_up"]} up."
   end
 
 elsif results['error'] # speedtest-cli returned an error
@@ -56,12 +55,11 @@ elsif results['error'] # speedtest-cli returned an error
 
 else # we shouldn't get here unless something is really broken, like we couldn't even make a request to speedtest-cli...so unlikely tweeting will work either
 
-  tweet_message = 'Something is wrong with speedtest-cli -- no results reported.'
   puts '...error: unknown reasons'
 
 end
 
-if config["tweet_results"]
+if config["tweet_results"] && tweet_message
   client.update(tweet_message)
   puts '...tweeting results'
 end
